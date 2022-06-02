@@ -39,28 +39,6 @@ public class PersonService
         return newPerson;
     }
 
-    public void AddSkill(int PersonId, int SkillId)
-    {
-        var personToUpdate = _context.Persons.Find(PersonId);
-        var skillToAdd = _context.Skills.Find(SkillId);
-
-        if (personToUpdate is null || skillToAdd is null)
-        {
-            throw new NullReferenceException("Person or skill does not exist");
-        }
-
-        if(personToUpdate.Skills is null)
-        {
-            personToUpdate.Skills = new List<Skill>();
-        }
-
-            personToUpdate.Skills.Add(skillToAdd);
-
-            _context.Persons.Update(personToUpdate);
-            _context.SaveChanges();
-    }
-
-
    public void DeleteById(int id)
     {
         var personToDelete = _context.Persons.Find(id);
